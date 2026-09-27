@@ -1,7 +1,6 @@
 use gpui::{App, Global, Hsla, Window, WindowAppearance, hsla, rgb, transparent_black};
 
-#[derive(Clone, Copy)]
-pub enum ThemePreference { System, Light, Dark }
+pub use anastasia_client::theme::ThemePreference;
 
 fn resolves_to_dark(preference: ThemePreference, system_appearance: WindowAppearance) -> bool {
     match preference {
@@ -80,8 +79,8 @@ pub struct Theme {
 
 impl Theme {
     pub fn current(cx: &App) -> Self {
-        if cx.has_global::<ActiveAnastasiaTheme>() {
-            cx.global::<ActiveAnastasiaTheme>().0
+        if cx.has_global::<ActiveWakuTheme>() {
+            cx.global::<ActiveWakuTheme>().0
         } else {
             Self::dark()
         }
@@ -206,6 +205,42 @@ impl Theme {
         }
     }
 
+    /// Semantic color for access permission postures.
+    /// Full access: orange, Auto: yellow, Auto accept edit: blue, Supervised: green.
+    pub fn access_color(&self, mode: anastasia_protocol::model::RuntimeMode) -> Hsla {
+        use anastasia_protocol::model::RuntimeMode;
+        match mode {
+            RuntimeMode::FullAccess => {
+                if self.is_dark {
+                    rgb(0xF97316).into() // vibrant orange
+                } else {
+                    rgb(0xEA580C).into() // dark amber orange
+                }
+            }
+            RuntimeMode::Auto => {
+                if self.is_dark {
+                    rgb(0xFACC15).into() // vibrant yellow
+                } else {
+                    rgb(0xCA8A04).into() // deep yellow
+                }
+            }
+            RuntimeMode::AutoAcceptEdits => {
+                if self.is_dark {
+                    rgb(0x60A5FA).into() // sky blue
+                } else {
+                    rgb(0x2563EB).into() // royal blue
+                }
+            }
+            RuntimeMode::Ask | RuntimeMode::Plan => {
+                if self.is_dark {
+                    rgb(0x4ADE80).into() // emerald green
+                } else {
+                    rgb(0x16A34A).into() // forest green
+                }
+            }
+        }
+    }
+
     /// Semantic color for file mentions in composer and chat.
     pub fn mention_color(&self) -> Hsla {
         if self.is_dark {
@@ -217,14 +252,14 @@ impl Theme {
 }
 
 #[derive(Clone, Copy)]
-struct ActiveAnastasiaTheme(Theme);
+struct ActiveWakuTheme(Theme);
 
-impl Global for ActiveAnastasiaTheme {}
+impl Global for ActiveWakuTheme {}
 
 /// Publish the resolved palette. [`Theme::current`] reads it back from the
 /// global, which is how every view gets its colors.
 fn set_active_theme(theme: Theme, cx: &mut App) {
-    cx.set_global(ActiveAnastasiaTheme(theme));
+    cx.set_global(ActiveWakuTheme(theme));
 }
 
 /// Resolve and publish the startup palette, before any window exists.
@@ -239,7 +274,7 @@ pub fn init(cx: &mut App) {
 }
 
 pub fn apply_theme_preference(preference: ThemePreference, window: &mut Window, cx: &mut App) {
-    let _ = native_override(preference);
+    crate::platform::set_window_appearance(window, native_override(preference));
     let is_dark = resolves_to_dark(preference, cx.window_appearance());
     set_active_theme(
         if is_dark {
@@ -249,6 +284,7 @@ pub fn apply_theme_preference(preference: ThemePreference, window: &mut Window, 
         },
         cx,
     );
+    crate::platform::configure_sidebar_material(window, is_dark);
     window.refresh();
 }
 
@@ -329,4 +365,22 @@ mod tests {
         }
     }
 
+    #[test]
+    fn access_colors_are_defined_and_distinct() {
+        use anastasia_protocol::model::RuntimeMode;
+
+        for theme in [Theme::dark(), Theme::light()] {
+            let orange_full = theme.access_color(RuntimeMode::FullAccess);
+            let yellow_auto = theme.access_color(RuntimeMode::Auto);
+            let blue = theme.access_color(RuntimeMode::AutoAcceptEdits);
+            let green = theme.access_color(RuntimeMode::Ask);
+            let green_plan = theme.access_color(RuntimeMode::Plan);
+
+            assert_eq!(green, green_plan);
+            assert_ne!(orange_full, yellow_auto);
+            assert_ne!(yellow_auto, blue);
+            assert_ne!(blue, green);
+            assert_ne!(orange_full, green);
+        }
+    }
 }

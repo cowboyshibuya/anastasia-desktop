@@ -233,17 +233,21 @@ const TEXT_FONTS: &[&[u8]] = &[
     include_bytes!("../assets/fonts/JetBrainsMono-BoldItalic.ttf"),
 ];
 
-/// Symbols-only icon face for fallback glyphs.
+/// Symbols-only icon face resolved via CoreText cascade (`FontFallbacks`),
+/// never as a primary GPUI family; see `register_fonts_with_coretext`.
 const SYMBOLS_FONT: &[u8] = include_bytes!("../assets/fonts/SymbolsNerdFontMono-Regular.ttf");
 
 /// Family name of [`SYMBOLS_FONT`] for `FontFallbacks` lists.
 pub const SYMBOLS_FONT_FAMILY: &str = "Symbols Nerd Font Mono";
 
 pub fn register_fonts(cx: &App) -> Result<()> {
-    let mut fonts = TEXT_FONTS.iter().map(|font| Cow::Borrowed(*font)).collect::<Vec<_>>();
-    fonts.push(Cow::Borrowed(SYMBOLS_FONT));
-    cx.text_system().add_fonts(fonts)?;
-    Ok(())
+    cx.text_system().add_fonts(
+        TEXT_FONTS
+            .iter()
+            .map(|font| Cow::Borrowed(*font))
+            .collect::<Vec<_>>(),
+    )?;
+    crate::platform::register_fonts_with_coretext(&[SYMBOLS_FONT])
 }
 
 impl AssetSource for Assets {

@@ -7,10 +7,11 @@ this branch until a private-home create/prompt/stream/resume cycle and visual
 comparison pass against the original app.
 
 The first engine client slice is now in `anastasia-client::engine_connection`.
-It pins Rust SDK revision `9516895` and passes a private-home create, plan,
+It pins Rust SDK revision `75e66b2` and passes a private-home create, plan,
 rename, message-persist, detach, and resume round trip against the matching
 engine executable. The adapter now translates streaming tool, permission, and
-question events for the original GUI. It does not yet connect the GPUI
+question events for the original GUI. The public history response also preserves
+tool-call details needed to rebuild resumed transcripts. It does not yet connect the GPUI
 application to the engine. The old client protocol remains only as unmigrated
 source; the launcher still blocks it.
 

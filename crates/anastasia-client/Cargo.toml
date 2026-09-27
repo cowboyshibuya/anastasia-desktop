@@ -21,7 +21,7 @@ tungstenite = { version = "0.30", default-features = false, features = [
 url = "2"
 uuid = { version = "1.18", features = ["v4", "v5", "serde"] }
 anastasia-protocol = { path = "../anastasia-protocol" }
-anastasia-sdk = { git = "https://github.com/cowboyshibuya/anastasia-engine", rev = "9516895079afe95476652fc6c5cdfcc69a0eacf7" }
+anastasia-sdk = { git = "https://github.com/cowboyshibuya/anastasia-engine", rev = "75e66b2a807833addfde24aee077d6977e584d5f" }
 
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"

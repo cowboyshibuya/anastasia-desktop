@@ -270,7 +270,7 @@ dependencies = [
 [[package]]
 name = "anastasia-harness-api"
 version = "0.1.0"
-source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=9516895079afe95476652fc6c5cdfcc69a0eacf7#9516895079afe95476652fc6c5cdfcc69a0eacf7"
+source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=75e66b2a807833addfde24aee077d6977e584d5f#75e66b2a807833addfde24aee077d6977e584d5f"
 dependencies = [
  "anastasia-session-types",
  "serde",
@@ -280,7 +280,7 @@ dependencies = [
 [[package]]
 name = "anastasia-message-types"
 version = "0.1.0"
-source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=9516895079afe95476652fc6c5cdfcc69a0eacf7#9516895079afe95476652fc6c5cdfcc69a0eacf7"
+source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=75e66b2a807833addfde24aee077d6977e584d5f#75e66b2a807833addfde24aee077d6977e584d5f"
 dependencies = [
  "chrono",
  "serde",
@@ -306,7 +306,7 @@ dependencies = [
 [[package]]
 name = "anastasia-sdk"
 version = "0.1.0"
-source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=9516895079afe95476652fc6c5cdfcc69a0eacf7#9516895079afe95476652fc6c5cdfcc69a0eacf7"
+source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=75e66b2a807833addfde24aee077d6977e584d5f#75e66b2a807833addfde24aee077d6977e584d5f"
 dependencies = [
  "anastasia-harness-api",
  "anastasia-transport",
@@ -320,7 +320,7 @@ dependencies = [
 [[package]]
 name = "anastasia-session-types"
 version = "0.1.0"
-source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=9516895079afe95476652fc6c5cdfcc69a0eacf7#9516895079afe95476652fc6c5cdfcc69a0eacf7"
+source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=75e66b2a807833addfde24aee077d6977e584d5f#75e66b2a807833addfde24aee077d6977e584d5f"
 dependencies = [
  "anastasia-message-types",
  "chrono",
@@ -331,7 +331,7 @@ dependencies = [
 [[package]]
 name = "anastasia-transport"
 version = "0.1.0"
-source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=9516895079afe95476652fc6c5cdfcc69a0eacf7#9516895079afe95476652fc6c5cdfcc69a0eacf7"
+source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=75e66b2a807833addfde24aee077d6977e584d5f#75e66b2a807833addfde24aee077d6977e584d5f"
 dependencies = [
  "hex",
  "sha2",

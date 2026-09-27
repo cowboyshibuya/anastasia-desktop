@@ -1142,10 +1142,7 @@ mod tests {
         {
             let state_path = StateStore::default_path();
             assert_eq!(app_settings_path, state_path.with_file_name("app.json"));
-            assert_eq!(
-                legacy_settings_paths,
-                [state_path.with_file_name("settings.json")]
-            );
+            assert!(legacy_settings_paths.is_empty());
         }
 
         #[cfg(not(debug_assertions))]
@@ -1154,10 +1151,7 @@ mod tests {
                 app_settings_path,
                 configuration_directory().join("app.json")
             );
-            assert_eq!(
-                legacy_settings_paths,
-                [configuration_directory().join("settings.json")]
-            );
+            assert!(legacy_settings_paths.is_empty());
         }
     }
 

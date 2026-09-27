@@ -19,8 +19,9 @@ tungstenite = { version = "0.30", default-features = false, features = [
     "rustls-tls-native-roots",
 ] }
 url = "2"
-uuid = { version = "1.18", features = ["v4", "serde"] }
+uuid = { version = "1.18", features = ["v4", "v5", "serde"] }
 anastasia-protocol = { path = "../anastasia-protocol" }
+anastasia-sdk = { git = "https://github.com/cowboyshibuya/anastasia-engine", rev = "6e2faa2204c0007daf34f832e534fb2cfa7796d3" }
 
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"

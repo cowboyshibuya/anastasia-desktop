@@ -5,6 +5,8 @@
 //! or provider implementations.
 
 mod client;
+pub mod engine_identity;
+pub mod engine_connection;
 pub mod command_env;
 pub mod composer_complete;
 pub mod computer_use;

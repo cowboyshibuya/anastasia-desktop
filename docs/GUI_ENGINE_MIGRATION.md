@@ -6,6 +6,13 @@ desktop launcher deliberately refuses to start it. Do not package or release
 this branch until a private-home create/prompt/stream/resume cycle and visual
 comparison pass against the original app.
 
+The first engine client slice is now in `anastasia-client::engine_connection`.
+It pins Rust SDK revision `6e2faa2` and passes a private-home create, plan,
+rename, message-persist, detach, and resume round trip against the matching
+engine executable. This proves the shared engine connection but does not yet
+connect the GPUI application to it. The old client protocol remains only as
+unmigrated source; the launcher still blocks it.
+
 The desktop source in this branch comes from `../anastasia`. Preserve its GPUI
 views, assets, keyboard behavior, window restoration, and settings screens.
 The agent engine in `anastasia-engine` remains the only owner of sessions,

@@ -780,6 +780,9 @@ pub struct RuntimeEventCursor {
 #[derive(Clone, Debug, Deserialize, Serialize, TS)]
 pub struct AgentSession {
     pub id: Uuid,
+    /// The harness-owned identity; `id` is only the GUI presentation key.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub engine_session_id: Option<String>,
     /// A title explicitly chosen by the user. [`Self::DEFAULT_TITLE`] means
     /// no explicit title has been set, so [`Self::auto_title`] may be shown.
     pub title: String,
@@ -895,6 +898,7 @@ impl AgentSession {
         let now = unix_time();
         Self {
             id: Uuid::new_v4(),
+            engine_session_id: None,
             title: Self::DEFAULT_TITLE.to_owned(),
             auto_title: None,
             project_id,
@@ -935,6 +939,7 @@ impl AgentSession {
     pub fn list_projection(&self) -> Self {
         Self {
             id: self.id,
+            engine_session_id: self.engine_session_id.clone(),
             title: self.title.clone(),
             auto_title: self.auto_title.clone(),
             project_id: self.project_id,
@@ -3421,9 +3426,9 @@ mod tests {
     }
 
     #[test]
-    fn projectless_projects_use_projects_root_and_recognize_legacy_paths() {
+    fn projectless_projects_use_desktop_root_and_recognize_legacy_paths() {
         let home = dirs::home_dir().expect("test user has a home directory");
-        let root = home.join(".anastasia");
+        let root = crate::identity::desktop_data_dir();
         let legacy = Project::from_path(root.clone());
         let legacy_dated = Project::from_path(root.join("2026-08-08/new-chat"));
         let project = Project::from_path(root.join("projects/2026-08-08/new-chat"));

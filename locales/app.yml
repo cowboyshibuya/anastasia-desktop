@@ -1,0 +1,12 @@
+_version: 2
+
+menu.cut:
+  en: Cut
+menu.copy:
+  en: Copy
+menu.paste:
+  en: Paste
+menu.select_all:
+  en: Select All
+input.do_anything:
+  en: Do anything…

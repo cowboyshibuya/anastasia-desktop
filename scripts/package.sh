@@ -4,7 +4,7 @@ set -euo pipefail
 desktop_source="$(cd "$(dirname "$0")/.." && pwd)"
 engine_source="${ANASTASIA_ENGINE_SOURCE:-$desktop_source/../anastasia-engine}"
 engine_source="$(cd "$engine_source" && pwd)"
-pinned_revision="$(sed -n 's/.*anastasia-engine", rev = "\([0-9a-f]*\)".*/\1/p' "$desktop_source/Cargo.toml" | head -1)"
+pinned_revision="$(sed -n 's/.*anastasia-engine", rev = "\([0-9a-f]*\)".*/\1/p' "$desktop_source/crates/anastasia-client/Cargo.toml" | head -1)"
 actual_revision="$(git -C "$engine_source" rev-parse HEAD)"
 if [[ -z "$pinned_revision" || "$actual_revision" != "$pinned_revision" ]]; then
   echo "Engine source must be at the revision pinned in Cargo.toml: $pinned_revision" >&2

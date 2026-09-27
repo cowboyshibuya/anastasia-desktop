@@ -23,7 +23,7 @@ case "$profile" in
 esac
 engine_target="${ANASTASIA_ENGINE_TARGET_DIR:-$engine_source/target}"
 desktop_target="${ANASTASIA_DESKTOP_TARGET_DIR:-$desktop_source/target}"
-CARGO_TARGET_DIR="$engine_target" cargo build --locked --profile "$profile" --manifest-path "$engine_source/Cargo.toml" --bin anastasia
+ANASTASIA_CLI_BUILD_GIT_HASH="${actual_revision:0:9}" CARGO_TARGET_DIR="$engine_target" cargo build --locked --profile "$profile" --manifest-path "$engine_source/Cargo.toml" --bin anastasia
 CARGO_TARGET_DIR="$desktop_target" cargo build --locked --profile "$profile" --manifest-path "$desktop_source/Cargo.toml" --bin anastasia-desktop
 
 mkdir -p "$desktop_source/dist"

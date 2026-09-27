@@ -195,7 +195,7 @@ dependencies = [
 [[package]]
 name = "anastasia-harness-api"
 version = "0.1.0"
-source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=18113fab802ec55619e8d75423026d771755625a#18113fab802ec55619e8d75423026d771755625a"
+source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=0b817d4e18b329579e3114d827a904edd9b0a2ed#0b817d4e18b329579e3114d827a904edd9b0a2ed"
 dependencies = [
  "anastasia-session-types",
  "serde",
@@ -205,7 +205,7 @@ dependencies = [
 [[package]]
 name = "anastasia-message-types"
 version = "0.1.0"
-source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=18113fab802ec55619e8d75423026d771755625a#18113fab802ec55619e8d75423026d771755625a"
+source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=0b817d4e18b329579e3114d827a904edd9b0a2ed#0b817d4e18b329579e3114d827a904edd9b0a2ed"
 dependencies = [
  "chrono",
  "serde",
@@ -215,7 +215,7 @@ dependencies = [
 [[package]]
 name = "anastasia-session-types"
 version = "0.1.0"
-source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=18113fab802ec55619e8d75423026d771755625a#18113fab802ec55619e8d75423026d771755625a"
+source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=0b817d4e18b329579e3114d827a904edd9b0a2ed#0b817d4e18b329579e3114d827a904edd9b0a2ed"
 dependencies = [
  "anastasia-message-types",
  "chrono",
@@ -226,7 +226,7 @@ dependencies = [
 [[package]]
 name = "anastasia-transport"
 version = "0.1.0"
-source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=18113fab802ec55619e8d75423026d771755625a#18113fab802ec55619e8d75423026d771755625a"
+source = "git+https://github.com/cowboyshibuya/anastasia-engine?rev=0b817d4e18b329579e3114d827a904edd9b0a2ed#0b817d4e18b329579e3114d827a904edd9b0a2ed"
 dependencies = [
  "hex",
  "sha2",

@@ -6,8 +6,8 @@ license = "GPL-3.0-only"
 description = "Native desktop client for the Anastasia agent engine"
 
 [dependencies]
-anastasia-harness-api = { git = "https://github.com/cowboyshibuya/anastasia-engine", rev = "18113fab802ec55619e8d75423026d771755625a" }
-anastasia-transport = { git = "https://github.com/cowboyshibuya/anastasia-engine", rev = "18113fab802ec55619e8d75423026d771755625a" }
+anastasia-harness-api = { git = "https://github.com/cowboyshibuya/anastasia-engine", rev = "0b817d4e18b329579e3114d827a904edd9b0a2ed" }
+anastasia-transport = { git = "https://github.com/cowboyshibuya/anastasia-engine", rev = "0b817d4e18b329579e3114d827a904edd9b0a2ed" }
 anyhow = "1"
 gpui = { git = "https://github.com/egoist/zed", branch = "waku-webview", features = ["test-support"] }
 gpui_platform = { git = "https://github.com/egoist/zed", branch = "waku-webview", features = ["font-kit", "wayland", "x11"] }
